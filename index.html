@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats Calculator - AFS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="glow-text">Stats Calculator - AFSE</h1>
+
+        <div class="input-group">
+            <label>Select Stat</label>
+            <select id="statType">
+                <option value="1">Strength</option>
+                <option value="2">Durability</option>
+                <option value="3">Chakra</option>
+                <option value="4">Sword</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Stat per Tick</label>
+            <input type="text" id="statPerTick" placeholder="Ex: 10k">
+        </div>
+
+        <div class="input-group">
+            <label>Current Stats</label>
+            <input type="text" id="currentStats" placeholder="Ex: 150m">
+        </div>
+
+        <div class="input-group">
+            <label>Wanted Stats</label>
+            <input type="text" id="wantedStats" placeholder="Ex: 1b">
+        </div>
+
+        <div class="input-group">
+            <label>Champion per Tick</label>
+            <input type="text" id="championPerTick" placeholder="Ex: 1qd">
+        </div>
+
+        <button id="calculateBtn" class="btn-calculate" onclick="calculator()">Calculate</button>
+
+        <div class="results">
+            <p id="statPerMin">Strength Per Minute: 0</p>
+            <p id="timeResult" class="highlight">Time: 0d 0h 0m</p>
+        </div>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

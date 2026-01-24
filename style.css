@@ -1,0 +1,131 @@
+:root {
+    --fundo-escuro: #0a0110;      
+    --fundo-card: #150225;        
+    --roxo-vibrante: #bc66ff;     
+    --rosa-choque: #ff007f;       
+    --rosa-suave: #ff80bf;        
+    --input-bg: #0f021a;          
+    --borda-rosa: #4a0e70;        
+    --texto: #ffffff;             
+}
+
+body {
+    background: radial-gradient(circle at center, #25033d 0%, #0a0110 100%);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: var(--texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: var(--fundo-card);
+    padding: 40px; /* Aumentei o respiro interno da calculadora */
+    border-radius: 25px;
+    border: 2px solid #4a0e70;
+    width: 400px; /* Aumentei um pouco a largura */
+    text-align: center;
+    box-shadow: 0 0 40px rgba(188, 102, 255, 0.25), 
+                0 0 80px rgba(255, 0, 127, 0.2);
+}
+
+.glow-text {
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--rosa-suave);
+    text-shadow: 0 0 15px rgba(255, 128, 191, 0.7);
+    margin-bottom: 35px; /* Espaço maior abaixo do título */
+}
+
+/* Campos de entrada com mais distância entre si */
+.input-group {
+    text-align: left;
+    margin-bottom: 22px; /* Aumentei o espaço entre cada campo */
+}
+
+.input-group label {
+    display: block;
+    color: var(--roxo-vibrante);
+    font-size: 14px;
+    margin-bottom: 8px; /* Espaço entre o nome e a caixa */
+    font-weight: 500;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--borda-rosa);
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: var(--rosa-choque);
+    box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+}
+
+/* Espaçamento dos Toggles */
+.toggle-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 30px; /* Espaço maior antes de começar os inputs de stats */
+}
+
+.btn-calculate {
+    width: 100%;
+    padding: 18px;
+    margin-top: 15px;
+    margin-bottom: 10px; /* Espaço antes dos resultados */
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #ff007f, #9d00ff);
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(255, 0, 127, 0.5);
+    transition: 0.2s;
+}
+
+/* --- ÁREA DE RESPOSTAS (RESULTADOS) --- */
+.results {
+    margin-top: 35px; /* GRANDE ESPAÇO para separar do botão */
+    padding-top: 20px;
+    border-top: 1px solid rgba(188, 102, 255, 0.2); /* Linha divisória sutil */
+}
+
+.results p {
+    margin-bottom: 15px; /* ESPAÇO entre cada linha de resposta */
+    color: var(--rosa-suave);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.highlight {
+    font-size: 20px !important;
+    color: #ff3399 !important;
+    text-shadow: 0 0 10px rgba(255, 51, 153, 0.4);
+    margin-top: 20px; /* Espaço extra para o tempo final */
+}
+
+/* Caixa da IA separada do resto */
+.ai-box {
+    margin-top: 40px; /* Bem longe das respostas para não confundir */
+    padding: 15px;
+    border: 1px solid var(--roxo-vibrante);
+    border-radius: 15px;
+    background-color: rgba(188, 102, 255, 0.05);
+    font-size: 14px;
+    color: #e0b0ff;
+    line-height: 1.5;
+}
