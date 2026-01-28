@@ -12,7 +12,7 @@ function calculator() {
     meta = sufixos(document.getElementById('wantedStats').value);
 
     if (opcao == 3) {
-        tempoClick = 2.55;
+        tempoClick = 4;
     } else if (opcao == 2) {
         tempoClick = 1.9;
     } else {
