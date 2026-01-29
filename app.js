@@ -117,7 +117,20 @@ const divYen = document.getElementById('camposYen');
 const divChampion = document.getElementById('grupoChampion');
 
 seletor.addEventListener('change', function() {
+    opcao = Number(seletor.value);
+    nomeAtual = nomes[opcao];
+
     if (seletor.value === "5") {
+        document.getElementById('statPerTick').value = "";
+        document.getElementById('currentStats').value = "";
+        document.getElementById('wantedStats').value = "";
+        document.getElementById('championPerTick').value = "";
+        document.getElementById('mult1').value = "";
+        document.getElementById('mult2').value = "";
+
+        document.getElementById('statPerMin').innerText = `${nomeAtual} Per Hour: 0`;
+        document.getElementById('timeResult').innerText = "Time: 0h 0m 0s";
+
         divYen.style.display = "block";    
         divChampion.style.display = "block"; 
         document.getElementById('labelStat').innerText = "Earning Per Minute";
@@ -129,7 +142,9 @@ seletor.addEventListener('change', function() {
         divChampion.style.display = "block"; 
         document.getElementById('labelStat').innerText = "Stat Per Click";
         document.getElementById('labelChampion').innerText = "Champion Per Click";
-        document.getElementById('labelCurrent').innerText = "Curent Stats";
-        document.getElementById('labelWanted').innerText = "Wanted stats";
+        document.getElementById('labelCurrent').innerText = "Current Stats";
+        document.getElementById('labelWanted').innerText = "Wanted Stats";
+        
+        document.getElementById('statPerMin').innerText = `${nomeAtual} Per Minute: 0`;
     }
 });
