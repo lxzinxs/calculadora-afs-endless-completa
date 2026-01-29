@@ -1,10 +1,11 @@
-let click, champion, multiChampion, tempoClick, tempoYen, tenho, faltaPoder, faltaYen, meta, segundosPorClick, segundosPorChampion, segundosPorYen, totalPorSegundo, totalPorMinuto, yen, multiplicador1Yen, multiplicador2Yen, yenTotal, horas, minutos, opcao, resultadoYen, resultadoClick, segundos;
+let click, champion, multiChampion, tempoClick, tempoYen, tenho, faltaPoder, faltaYen, meta, segundosPorClick, segundosPorChampion, segundosPorYen, yenPorHora, totalPorSegundo, totalPorMinuto, yen, multiplicador1Yen, multiplicador2Yen, yenTotal, horas, minutos, opcao, resultadoYen, resultadoClick, segundos;
 const tempoChampion = 4;
 let nomes = ["", "Strength", "Durability", "Chakra", "Sword", "Yen"];
 let nomeAtual = nomes[opcao] || "Stats";
 
 function calcularPoder() {
     opcao = Number(document.getElementById('statType').value);
+    nomeAtual = nomes[opcao];
 
     click = sufixos(document.getElementById('statPerTick').value);
     tenho = sufixos(document.getElementById('currentStats').value);
@@ -53,10 +54,10 @@ function calcularYen() {
 
     yenTotal = yen * multiplicador1 * multiplicador2 * multiChampion;
 
+    yenPorHora = yenTotal * 60
+
 	segundosPorYen = yenTotal / 60;
-
 	faltaYen = meta - tenho;
-
 	resultadoYen = faltaYen / segundosPorYen;
 
 	horas = Math.floor(resultadoYen / 3600);
@@ -66,7 +67,7 @@ function calcularYen() {
     totalPorMinuto = yenTotal;
 
     document.getElementById('timeResult').innerText = "Time: " + horas + "h " + minutos + "m " + segundos + "s";
-    document.getElementById('statPerMin').innerText = `${nomeAtual} por minuto: ${formatarSufixos(totalPorMinuto)}`;
+    document.getElementById('statPerMin').innerText = `${nomeAtual} Per Hour: ${formatarSufixos(yenPorHora)}`;
 }
 
 function sufixos(texto) {
