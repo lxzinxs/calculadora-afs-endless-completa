@@ -1,9 +1,9 @@
-let click, champion, tempoClick, tempoYen, tenho, faltaPoder, faltaYen, meta, segundosPorClick, segundosPorChampion, segundosPorYen, totalPorSegundo, totalPorMinuto, yen, multiplicador1Yen, multiplicador2Yen, yenTotal, horas, minutos, opcao, resultadoYen, resultadoClick, segundos;
+let click, champion, multiChampion, tempoClick, tempoYen, tenho, faltaPoder, faltaYen, meta, segundosPorClick, segundosPorChampion, segundosPorYen, totalPorSegundo, totalPorMinuto, yen, multiplicador1Yen, multiplicador2Yen, yenTotal, horas, minutos, opcao, resultadoYen, resultadoClick, segundos;
 const tempoChampion = 4;
 let nomes = ["", "Strength", "Durability", "Chakra", "Sword", "Yen"];
 let nomeAtual = nomes[opcao] || "Stats";
 
-function calculator() {
+function calcularPoder() {
     opcao = Number(document.getElementById('statType').value);
 
     click = sufixos(document.getElementById('statPerTick').value);
@@ -11,7 +11,10 @@ function calculator() {
     champion = sufixos(document.getElementById('championPerTick').value);
     meta = sufixos(document.getElementById('wantedStats').value);
 
-    if (opcao == 3) {
+    if (opcao == 5) {
+        calcularYen();
+        return;
+    } else if (opcao == 3) {
         tempoClick = 2.55;
     } else if (opcao == 2) {
         tempoClick = 1.9;
@@ -32,6 +35,35 @@ function calculator() {
     segundos = Math.floor(resultadoClick % 60);
 
     totalPorMinuto = totalPorSegundo * 60;
+
+    document.getElementById('timeResult').innerText = "Time: " + horas + "h " + minutos + "m " + segundos + "s";
+    document.getElementById('statPerMin').innerText = `${nomeAtual} por minuto: ${formatarSufixos(totalPorMinuto)}`;
+}
+
+function calcularYen() {
+    opcao = Number(document.getElementById('statType').value);
+    nomeAtual = nomes[opcao];
+
+    yen = sufixos(document.getElementById('statPerTick').value);
+    multiplicador1 = parseFloat(document.getElementById('mult1').value);
+    multiplicador2 = parseFloat(document.getElementById('mult2').value);
+    multiChampion = parseFloat(document.getElementById('championPerTick').value);
+    tenho = sufixos(document.getElementById('currentStats').value);
+    meta = sufixos(document.getElementById('wantedStats').value);
+
+    yenTotal = yen * multiplicador1 * multiplicador2 * multiChampion;
+
+	segundosPorYen = yenTotal / 60;
+
+	faltaYen = meta - tenho;
+
+	resultadoYen = faltaYen / segundosPorYen;
+
+	horas = Math.floor(resultadoYen / 3600);
+	minutos = Math.floor((resultadoYen % 3600) / 60);
+	segundos = Math.floor(resultadoYen % 60);
+
+    totalPorMinuto = yenTotal;
 
     document.getElementById('timeResult').innerText = "Time: " + horas + "h " + minutos + "m " + segundos + "s";
     document.getElementById('statPerMin').innerText = `${nomeAtual} por minuto: ${formatarSufixos(totalPorMinuto)}`;
@@ -78,3 +110,25 @@ function formatarSufixos(valor) {
 
     return valor.toFixed(2) + sufixosLista[grau];
 }
+
+const seletor = document.getElementById('statType'); 
+const divYen = document.getElementById('camposYen');
+const divChampion = document.getElementById('grupoChampion');
+
+seletor.addEventListener('change', function() {
+    if (seletor.value === "5") {
+        divYen.style.display = "block";    
+        divChampion.style.display = "block"; 
+        document.getElementById('labelStat').innerText = "Earning Per Minute";
+        document.getElementById('labelChampion').innerText = "Champion Multiplier";
+        document.getElementById('labelCurrent').innerText = "Current Yen";
+        document.getElementById('labelWanted').innerText = "Wanted Yen";
+    } else {
+        divYen.style.display = "none";     
+        divChampion.style.display = "block"; 
+        document.getElementById('labelStat').innerText = "Stat Per Click";
+        document.getElementById('labelChampion').innerText = "Champion Per Click";
+        document.getElementById('labelCurrent').innerText = "Curent Stats";
+        document.getElementById('labelWanted').innerText = "Wanted stats";
+    }
+});
